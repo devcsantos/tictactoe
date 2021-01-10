@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+:root {
+  --palette-bgcolor: #FFFAAA;
+  font-family: 'Patua One', cursive;
+}
+
+*, *:before, *:after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--palette-bgcolor);
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(3);
+  grid-template-rows: repeat(3);
+}
