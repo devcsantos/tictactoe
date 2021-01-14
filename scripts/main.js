@@ -69,7 +69,9 @@ const displayController = (() => {
     _gameFields.forEach((field) => {
       field.addEventListener('click', (e) => {
         let fieldIndex = Array.prototype.indexOf.call(field.parentNode.children, field);
-        gameController.playerMove(fieldIndex);
+        console.log(gameBoard.getField(fieldIndex));
+        if(gameBoard.getField(fieldIndex) == undefined || gameBoard.getField(fieldIndex) == '')
+          gameController.playerMove(fieldIndex);
         _render();
         console.log(fieldIndex);
       })
