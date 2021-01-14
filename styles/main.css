@@ -2,6 +2,8 @@
 
 :root {
   --palette-bgcolor: #FFFAAA;
+  --palette-field-color: #2E5762;
+  --palette-field-color-hover: #62B0AE;
   font-family: 'Patua One', cursive;
 }
 
@@ -15,8 +17,26 @@ body {
   background-color: var(--palette-bgcolor);
 }
 
-#game-board {
+#game-board-container {
   display: grid;
-  grid-template-columns: repeat(3);
-  grid-template-rows: repeat(3);
+  width: 500px;
+  height: 500px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  margin: auto;
+}
+
+.game-board-field {
+  background-color: var(--palette-field-color);
+  font-size: 150px;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  transition: background-color 0.4s ease-out
+}
+
+.game-board-field:hover {
+  background-color: var(--palette-field-color-hover);
 }
