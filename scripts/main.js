@@ -1,3 +1,6 @@
+/*
+  Handles player (model)
+*/
 const playerFactory = (symbol, human) => {
   let _symbol = symbol;
   let _human = human;
@@ -30,33 +33,47 @@ const gameBoard = (() => {
   }
 })();
 
+/*
+  Handles game logic (Controller)
+*/
 const gameController = (() => {
   let _turnCounter = 0;
   let player1 = playerFactory('X', false);
   let player2 = playerFactory('O', false);
 
-  const move = () => {
-    player1.makeMove(5);
-    displayController.render();
+  const playerMove = (index) => {
+    (_turnCounter % 2 == 0) ? player1.makeMove(index) : player2.makeMove(index);
+    _turnCounter++;
   }
 
   return {
-    move
+    playerMove
   }
 })();
 
+/*
+  Handles display (View)
+*/
 const displayController = (() => {
+  const _gameFields = document.querySelectorAll(`.game-board-field`);
 
-  const render = () => {
+  const _render = () => {
     let count = 0;
-    let gameFields = document.querySelectorAll(`.game-board-field`);
-    gameFields.forEach((field) => {
+    _gameFields.forEach((field) => {
       field.textContent = gameBoard.getField(count);
       count++;
     });
   }
 
-  return {
-    render
-  }
+  const _initialize = (() => {
+    _gameFields.forEach((field) => {
+      field.addEventListener('click', (e) => {
+        let fieldIndex = Array.prototype.indexOf.call(field.parentNode.children, field);
+        gameController.playerMove(fieldIndex);
+        _render();
+        console.log(fieldIndex);
+      })
+    });
+
+  })();
 })();
