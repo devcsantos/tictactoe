@@ -8,7 +8,8 @@ const playerFactory = (symbol, human) => {
   let isHuman = () => _human;
 
   const makeMove = (index) => {
-    gameBoard.setField(index, getSymbol());
+    if(gameBoard.getField(index) == undefined || gameBoard.getField(index == '')) // do not overwrite
+      gameBoard.setField(index, getSymbol());
   }
   
   return {
@@ -70,12 +71,11 @@ const displayController = (() => {
       field.addEventListener('click', (e) => {
         let fieldIndex = Array.prototype.indexOf.call(field.parentNode.children, field);
         console.log(gameBoard.getField(fieldIndex));
-        if(gameBoard.getField(fieldIndex) == undefined || gameBoard.getField(fieldIndex) == '')
-          gameController.playerMove(fieldIndex);
+        gameController.playerMove(fieldIndex);
         _render();
-        console.log(fieldIndex);
       })
     });
 
   })();
+  
 })();
